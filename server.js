@@ -2,11 +2,13 @@ import express from "express"
 import cors from "cors"
 import { checkStatus } from "./DBHealthCheck.js";
 import { UserRouter } from "./Routes/user.route.js";
+import { AccountRouter } from "./Routes/account.route.js";
 const app=express()
 const PORT=8800;
 app.use(cors())
 app.use(express.json())
-app.use("/user",UserRouter)
+app.use("/auth",UserRouter)
+app.use("/api",AccountRouter)
 app.listen(PORT,()=>{
     const status = checkStatus();
     if(!status){
